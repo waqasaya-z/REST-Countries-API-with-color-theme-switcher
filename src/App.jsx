@@ -12,7 +12,8 @@ function App() {
   const [theme, setTheme] = useState("bg-slate-50");
   const [newTheme, setNewTheme] = useState("bg-white");
   const [text, setText] = useState("text-black");
-
+  const [selectedOption, setSelectedOption] = useState("");
+  const [filteredCountries, setFilteredCountries] = useState([]);
 
   const handleClick = () => {
     // setTheme(theme === "slate-50" ? "black" : "slate-50");
@@ -39,25 +40,24 @@ function App() {
   //   return country.name.toLowerCase().includes(search.toLowerCase());
   // });
 
-  const [selectedOption, setSelectedOption] = useState('');
-  const [filteredCountries, setFilteredCountries] = useState([]);
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
-  const handleChange = event => {
-      setSelectedOption(event.target.value);
+  useEffect(() => {
+    const filterCountries = () => {
+      if (selectedOption === "") {
+        setFilteredCountries(data);
+      } else {
+        const filtered = data.filter(
+          (country) => country.region === selectedOption
+        );
+        setFilteredCountries(filtered);
+      }
     };
 
-    useEffect(() => {
-      const filterCountries = () => {
-        if (selectedOption === '') {
-          setFilteredCountries(data);
-        } else {
-          const filtered = data.filter(country => country.region === selectedOption);
-          setFilteredCountries(filtered);
-        }
-      };
-  
-      filterCountries();
-    }, [selectedOption]);
+    filterCountries();
+  }, [selectedOption]);
 
   return (
     <>
@@ -71,18 +71,19 @@ function App() {
           </div>
           <div className="w-1/6">
             {" "}
-            {/* <Dropdown
-              text={text}
-              newTheme={newTheme}
-              handleCountry={handleCountry}
-            />{" "} */}
-            <DropdownMenu handleChange={handleChange} selectedOption={selectedOption} />
+            <DropdownMenu
+              handleChange={handleChange}
+              selectedOption={selectedOption}
+            />
           </div>
         </div>
         <div className="grid grid-cols-4 gap-4">
-        <CountryList filteredCountries={filteredCountries} theme={theme} text={text} />
+          <CountryList
+            filteredCountries={filteredCountries}
+            theme={theme}
+            text={text}
+          />
         </div>
-       
       </div>
     </>
   );
