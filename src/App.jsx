@@ -5,7 +5,6 @@ import CountryList from "./components/CountryList";
 import InputField from "./components/InputField";
 import Dropdown from "./components/Dropdown";
 import Navbar from "./components/Navbar";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import DropdownMenu from "./components/DropdownMenu";
 function App() {
   const [restData, setRestData] = useState([]);
@@ -13,7 +12,7 @@ function App() {
   const [theme, setTheme] = useState("bg-slate-50");
   const [newTheme, setNewTheme] = useState("bg-white");
   const [text, setText] = useState("text-black");
-  const [continent, setContinent] = useState("");
+
 
   const handleClick = () => {
     // setTheme(theme === "slate-50" ? "black" : "slate-50");
