@@ -1,9 +1,9 @@
-const DropdownMenu = ({selectedOption, handleChange}) => {
+const DropdownMenu = ({selectedOption, handleChange, newTheme}) => {
    
    
     return ( 
         <>
-        <select value={selectedOption} onChange={handleChange}>
+        <select className={`${newTheme}`} value={selectedOption} onChange={handleChange}>
         <option value="">All</option>
         <option value="Africa">Africa</option>
         <option value="Americas">America</option>

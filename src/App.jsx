@@ -13,9 +13,16 @@ function App() {
   const [text, setText] = useState("text-black");
   const [selectedOption, setSelectedOption] = useState("");
   const [filteredCountries, setFilteredCountries] = useState([]);
+  const [themeIcon, setThemeIcon] = useState(true);
 
   const handleClick = () => {
-    // setTheme(theme === "slate-50" ? "black" : "slate-50");
+    
+    setThemeIcon((prevIcon) => 
+      prevIcon === true ? false : true 
+    );
+
+
+
     setTheme((prevTheme) =>
       prevTheme === "bg-slate-50" ? "bg-gray-800" : "bg-slate-50"
     );
@@ -65,7 +72,7 @@ function App() {
   
   return (
     <>
-      <Navbar handleClick={handleClick} newTheme={newTheme} text={text} />
+      <Navbar handleClick={handleClick} newTheme={newTheme} text={text} themeIcon={themeIcon} />
 
       <div>
         <div className={`${theme} p-12 flex justify-between`}>
@@ -78,10 +85,11 @@ function App() {
             <DropdownMenu
               handleChange={handleChange}
               selectedOption={selectedOption}
+              newTheme={newTheme}
             />
           </div>
         </div>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className={`grid ${theme} pl-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4`}>
           <CountryList
             filteredCountries={searchCountry}
             theme={theme}

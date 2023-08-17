@@ -1,6 +1,7 @@
 import { BsMoon } from "react-icons/bs";
+import { BiSun } from "react-icons/bi";
 
-const Navbar = ({ handleClick, newTheme, text }) => {
+const Navbar = ({ handleClick, newTheme, text, themeIcon }) => {
   return (
     <div className={`${newTheme} flex justify-between p-5`}>
       <div className={`text-2xl font-bold ${text} ml-12 pl-5`}>
@@ -11,9 +12,11 @@ const Navbar = ({ handleClick, newTheme, text }) => {
         onClick={handleClick}
       >
         <div className="mr-2">
-          <BsMoon />
+         { !themeIcon && <BsMoon />}
+        { themeIcon && <BiSun />}
         </div>
-        <p> Dark Mode </p>
+      { !themeIcon &&  <p> Dark Mode </p>}
+      { themeIcon &&  <p> Light Mode </p>}
       </div>
     </div>
   );
