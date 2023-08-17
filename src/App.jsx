@@ -1,9 +1,8 @@
 import "./App.css";
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "./data/data.json";
 import CountryList from "./components/CountryList";
 import InputField from "./components/InputField";
-import Dropdown from "./components/Dropdown";
 import Navbar from "./components/Navbar";
 import DropdownMenu from "./components/DropdownMenu";
 function App() {
@@ -36,9 +35,7 @@ function App() {
     setSearch(e.target.value);
   };
 
-  // const filteredCountries = restData.filter((country) => {
-  //   return country.name.toLowerCase().includes(search.toLowerCase());
-  // });
+  
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -46,7 +43,10 @@ function App() {
 
   useEffect(() => {
     const filterCountries = () => {
-      if (selectedOption === "") {
+      if(search) {
+          
+      }
+      else if (selectedOption === "") {
         setFilteredCountries(data);
       } else {
         const filtered = data.filter(
@@ -59,6 +59,10 @@ function App() {
     filterCountries();
   }, [selectedOption]);
 
+  const searchCountry = filteredCountries.filter((country) => {
+    return country.name.toLowerCase().includes(search.toLowerCase());
+  });
+  
   return (
     <>
       <Navbar handleClick={handleClick} newTheme={newTheme} text={text} />
@@ -79,7 +83,7 @@ function App() {
         </div>
         <div className="grid grid-cols-4 gap-4">
           <CountryList
-            filteredCountries={filteredCountries}
+            filteredCountries={searchCountry}
             theme={theme}
             text={text}
           />
