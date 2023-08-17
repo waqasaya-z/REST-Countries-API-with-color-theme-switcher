@@ -3,8 +3,8 @@ const DropdownMenu = ({selectedOption, handleChange, newTheme}) => {
    
     return ( 
         <>
-        <select className={`${newTheme}`} value={selectedOption} onChange={handleChange}>
-        <option value="">All</option>
+        <select className={`${newTheme} p-3 w-3/4`} value={selectedOption} onChange={handleChange}>
+        <option value="">Filter by Region</option>
         <option value="Africa">Africa</option>
         <option value="Americas">America</option>
         <option value="Asia">Asia</option>
